@@ -83,12 +83,8 @@ spec:
 
           ports:
             - containerPort: {{ .Values.port }}
-          volumeMounts:
-            - mountPath: {{ .Values.mountPath }}
-              name: {{ .Values.name }}
+          volumes:
+            - name: {{ .Values.volume }}
       restartPolicy: Always
-      volumes:
-        - name: {{ .Values.name }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.claimName }}
+
 

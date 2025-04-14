@@ -26,12 +26,8 @@
     port: 27017
     targetPort: 27017
     type: LoadBalancer
-    volumes: mongo:/data
-    claimName: mongo-claim0
-    pvc:
-      accessMode: ReadWriteOnce
-      storage: 100Mi
-      dtorageClassName: standard
+    volume: mongo:/data
+
 
     name: mongo-express
     app: mongo-express
@@ -45,11 +41,7 @@
     port: 8081
     targetPort: 8081
     type: LoadBalancer
-    claimName: mongo-claim0
-    pvc:
-      accessMode: ReadWriteOnce
-      storage: 100Mi
-      dtorageClassName: standard
+    volume: mongo:/data
 
     name: postgresql
     app: postgresql
@@ -63,12 +55,8 @@
     port: 5432
     targetPort: 5432
     type: ClusterIP
-    mountPath: /data/postgres
-    claimName: postgres-claim0
-    pvc:
-      accessMode: ReadWriteOnce
-      storage: 100Mi
-      dtorageClassName: standard
+    volume: /data/postgres
+
 
     name: zookeeper
     app: zookeeper
