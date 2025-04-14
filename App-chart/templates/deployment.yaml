@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-{{ .Values.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-{{ .Values.app }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.image }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.env.SPRING_PROFILES_ACTIVE }}"
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: "{{ .Values.env.KAFKA_ADVERTISED_LISTENERS }}"
+            - name: KAFKA_BROKER_ID
+              value: "{{ .Values.env.KAFKA_BROKER_ID }}"
+            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+              value: "{{ .Values.env.KAFKA_LISTENER_SECURITY_PROTOCOL_MAP }}"
+            - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+              value: "{{ .Values.env.KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR }}"
+            - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+              value: "{{ .Values.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"
+            - name: KAFKA_INTER_BROKER_LISTENER_NAME
+              value: "{{ .Values.env.KAFKA_INTER_BROKER_LISTENER_NAME }}"
+            - name: KAFKA_ZOOKEEPER_CONNECT
+              value: "{{ .Values.env.KAFKA_ZOOKEEPER_CONNECT }}"
+            - name: SPRING_DATASOURCE_URL
+              value: "{{ .Values.env.SPRING_DATASOURCE_URL }}"
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: "{{ .Values.env.MONGO_INITDB_ROOT_USERNAME }}"
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: "{{ .Values.env.MONGO_INITDB_ROOT_PASSWORD }}"
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              value: "{{ .Values.env.ME_CONFIG_MONGODB_ADMINUSERNAME }}"
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              value: "{{ .Values.env.ME_CONFIG_MONGODB_ADMINPASSWORD }}"
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: "{{ .Values.env.ME_CONFIG_MONGODB_SERVER }}"
+            - name: PGDATA
+              value: "{{ .Values.env.PGDATA }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ .Values.env.POSTGRES_PASSWORD }}"
+            - name: POSTGRES_USER
+              value: "{{ .Values.env.POSTGRES_USER }}"
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "{{ .Values.env.ZOOKEEPER_CLIENT_PORT }}"
+            - name: ZOOKEEPER_TICK_TIME
+              value: "{{ .Values.env.ZOOKEEPER_TICK_TIME }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "{{ .Values.env.SPRING_DATASOURCE_USERNAME }}"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "{{ .Values.env.SPRING_DATASOURCE_PASSWORD }}"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "{{ .Values.env.KAFKA_BOOTSTRAP_SERVERS }}"
+            - name: SPRING_DATA_MONGODB_USERNAME
+              value: "{{ .Values.env.SPRING_DATA_MONGODB_USERNAME }}"
+            - name: SPRING_DATA_MONGODB_PASSWORD
+              value: "{{ .Values.env.SPRING_DATA_MONGODB_PASSWORD }}"
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "{{ .Values.env.SPRING_DATA_MONGODB_HOST }}"
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "{{ .Values.env.SPRING_DATA_MONGODB_PORT }}"
+            - name: SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE
+              value: "{{ .Values.env.SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE }}"
+            - name: SPRING_MAIL_HOST
+              value: "{{ .Values.env.SPRING_MAIL_HOST }}"
+            - name: SPRING_MAIL_PORT
+              value: "{{ .Values.env.SPRING_MAIL_PORT }}"
+            - name: SPRING_MAIL_USERNAME
+              value: "{{ .Values.env.SPRING_MAIL_USERNAME }}"
+            - name: SPRING_MAIL_PASSWORD
+              value: "{{ .Values.env.SPRING_MAIL_PASSWORD }}"
+
+          ports:
+            - containerPort: {{ .Values.port }}
+          volumeMounts:
+            - mountPath: {{ .Values.mountPath }}
+              name: {{ .Values.name }}
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Values.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.claimName }}
+

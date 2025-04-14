@@ -1,0 +1,215 @@
+    name: kafka
+    app: kafka
+    image: 172.27.249.245/springboot-microservices/confluentinc/cp-kafka:latest
+    replicaCount: 1       
+    env:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_BROKER_ID: "1"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true" 
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT    
+    port: 29092
+    targetPort: 29092
+    type: LoadBalancer
+
+
+    name: mongodb
+    app: mongodb
+    image: 172.27.249.245/springboot-microservices/mongo:latest
+
+    replicaCount: 1     
+    env:
+      - MONGO_INITDB_ROOT_USERNAME=alibou
+      - MONGO_INITDB_ROOT_PASSWORD=alibou
+    port: 27017
+    targetPort: 27017
+    type: LoadBalancer
+    volumes: mongo:/data
+    claimName: mongo-claim0
+    pvc:
+      accessMode: ReadWriteOnce
+      storage: 100Mi
+      dtorageClassName: standard
+
+    name: mongo-express
+    app: mongo-express
+    image: 172.27.249.245/springboot-microservices/mongo-express:latest
+
+    replicaCount: 1     
+    env:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=alibou
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=alibou
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    port: 8081
+    targetPort: 8081
+    type: LoadBalancer
+    claimName: mongo-claim0
+    pvc:
+      accessMode: ReadWriteOnce
+      storage: 100Mi
+      dtorageClassName: standard
+
+    name: postgresql
+    app: postgresql
+    image: 172.27.249.245/springboot-microservices/confluentinc/postgres:latest
+
+    replicaCount: 1     
+    env:
+      PGDATA: /data/postgres
+      POSTGRES_PASSWORD: alibou
+      POSTGRES_USER: alibou
+    port: 5432
+    targetPort: 5432
+    type: ClusterIP
+    mountPath: /data/postgres
+    claimName: postgres-claim0
+    pvc:
+      accessMode: ReadWriteOnce
+      storage: 100Mi
+      dtorageClassName: standard
+
+    name: zookeeper
+    app: zookeeper
+    image: 172.27.249.245/springboot-microservices/confluentinc/cp-zookeeper:latest
+    replicaCount: 1     
+    env:
+      ZOOKEEPER_CLIENT_PORT: "2181"
+      ZOOKEEPER_TICK_TIME: "2000"
+    port: 22181
+    targetPort: 2181
+    type: LoadBalancer
+
+    name: zipkin
+    app: zipkin
+    image: 172.27.249.245/springboot-microservices/openzipkin/zipkin:latest
+    replicaCount: 1     
+    port: 9411
+    targetPort: 9411
+    type: LoadBalancer
+
+
+    name: mail-dev
+    app: mail-dev
+    image: 172.27.249.245/springboot-microservices/maildev/maildev:latest
+    replicaCount: 1      
+    port: 1080
+    targetport: 1080
+    type: LoadBalancer
+
+    name: customer-service
+    app: customer-service
+    image: 172.27.249.245/springboot-microservices/customer:latest
+    replicaCount: 1     
+    port: 8090
+    targetPort: 8090
+    env:
+      SPRING_PROFILES_ACTIVE: docker    
+      MONGO_INITDB_ROOT_USERNAME: alibou
+      MONGO_INITDB_ROOT_PASSWORD: alibou
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka 
+      MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    type: ClusterIP
+
+    name: gateway
+    app: gateway
+    replicaCount: 1
+    image: 172.27.249.245/springboot-microservices/gateway:latest
+    env:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
+      MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    port: 8222
+    targetPort: 8222
+    type: LoadBalancer
+
+    name: discovery
+    app: discovery
+    image: 172.27.249.245/springboot-microservices/discovery:latest
+    replicaCount: 1     
+    port: 8761
+    targetPort: 8761
+    env:
+      SPRING_PROFILES_ACTIVE: docker
+      MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    type: Loadbalancer
+
+    name: product-service
+    app: product-service
+    image: 172.27.249.245/springboot-microservices/product:latest
+    replicaCount: 1     
+    port: 8050
+    targetPort: 8050
+    env:
+      SPRING_PROFILES_ACTIVE: "docker"
+    type: ClusterIP
+
+
+    name: order-service
+    app: order-service
+    image: 172.27.249.245/springboot-microservices/order:latest
+    replicaCount: 1     
+    port: 8070
+    targetPort: 8070
+    env:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/order  # Connexion au service postgresql
+      SPRING_DATASOURCE_USERNAME: alibou
+      SPRING_DATASOURCE_PASSWORD: alibou
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka 
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092  # La clé magique qui marche toujours
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092         # Pour les anciennes apps
+      KAFKA_ADVERTISED_LISTENERS: kafka:9092  
+      MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    type: ClusterIP
+
+    name: payment-service
+    app: payment-service
+    image: 172.27.249.245/springboot-microservices/payment:latest
+    port: 8060
+    targetPort: 8060
+    env:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/payment  # Connexion au service postgresql
+      SPRING_DATASOURCE_USERNAME: alibou
+      SPRING_DATASOURCE_PASSWORD: alibou
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka  
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092  # La clé magique qui marche toujours
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092         # Pour les anciennes apps
+      KAFKA_ADVERTISED_LISTENERS: kafka:9092  
+      MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    type: ClusterIP
+
+    name: notification-service
+    app: notification-service
+    image: 172.27.249.245/springboot-microservices/notification:latest
+    replicaCount: 1     
+    port: 8040
+    targetPort: 8040
+    env:
+      SPRING_PROFILES_ACTIVE: docker
+      EUREKA_INSTANCE_HOSTNAME: discovery
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
+      SPRING_APPLICATION_NAME: notification-service
+      SPRING_DATA_MONGODB_USERNAME: alibou
+      SPRING_DATA_MONGODB_PASSWORD: alibou
+      SPRING_DATA_MONGODB_HOST: mongodb
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: notification
+      SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
+      SPRING_MAIL_HOST: mail-dev
+      SPRING_MAIL_PORT: 1025
+      SPRING_MAIL_USERNAME: alibou
+      SPRING_MAIL_PASSWORD: aliboudocker rm  
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092  # La clé magique qui marche toujours
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092         # Pour les anciennes apps
+      KAFKA_ADVERTISED_LISTENERS: kafka:9092  
+      MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    type: ClusterIP

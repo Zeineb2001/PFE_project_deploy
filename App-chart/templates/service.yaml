@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.name }}
+  labels:
+    app: {{ .Release.Name }}-{{ .Values.app }}
+spec:
+  type: {{ .Values.type }}
+  selector:
+    app: {{ .Release.Name }}-{{ .Values.app }}
+  ports:
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.targetport }}
+      protocol: TCP
+      name: http
+
