@@ -1,4 +1,4 @@
-    name: kafka
+    name: microservices-full-code-kafka-1
     app: kafka
     image: 172.27.249.245/springboot-microservices/confluentinc/cp-kafka:latest
     replicaCount: 1       
@@ -15,7 +15,7 @@
     type: LoadBalancer
 
 
-    name: mongodb
+    name: mongo_db
     app: mongodb
     image: 172.27.249.245/springboot-microservices/mongo:latest
 
@@ -29,7 +29,7 @@
     volume: mongo:/data
 
 
-    name: mongo-express
+    name: mongo_express
     app: mongo-express
     image: 172.27.249.245/springboot-microservices/mongo-express:latest
 
@@ -43,10 +43,9 @@
     type: LoadBalancer
     volume: mongo:/data
 
-    name: postgresql
+    name: ms_pg_sql
     app: postgresql
     image: 172.27.249.245/springboot-microservices/confluentinc/postgres:latest
-
     replicaCount: 1     
     env:
       PGDATA: /data/postgres
@@ -58,7 +57,7 @@
     volume: /data/postgres
 
 
-    name: zookeeper
+    name: microservices-full-code-zookeeper-1
     app: zookeeper
     image: 172.27.249.245/springboot-microservices/confluentinc/cp-zookeeper:latest
     replicaCount: 1     
@@ -78,7 +77,7 @@
     type: LoadBalancer
 
 
-    name: mail-dev
+    name: ms-mail-dev
     app: mail-dev
     image: 172.27.249.245/springboot-microservices/maildev/maildev:latest
     replicaCount: 1      
@@ -86,7 +85,7 @@
     targetport: 1080
     type: LoadBalancer
 
-    name: customer-service
+    name: customer
     app: customer-service
     image: 172.27.249.245/springboot-microservices/customer:latest
     replicaCount: 1     
@@ -126,7 +125,7 @@
       MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
     type: Loadbalancer
 
-    name: product-service
+    name: product
     app: product-service
     image: 172.27.249.245/springboot-microservices/product:latest
     replicaCount: 1     
@@ -137,7 +136,7 @@
     type: ClusterIP
 
 
-    name: order-service
+    name: order
     app: order-service
     image: 172.27.249.245/springboot-microservices/order:latest
     replicaCount: 1     
@@ -156,7 +155,7 @@
       MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
     type: ClusterIP
 
-    name: payment-service
+    name: payment
     app: payment-service
     image: 172.27.249.245/springboot-microservices/payment:latest
     port: 8060
@@ -174,7 +173,7 @@
       MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
     type: ClusterIP
 
-    name: notification-service
+    name: notification
     app: notification-service
     image: 172.27.249.245/springboot-microservices/notification:latest
     replicaCount: 1     
