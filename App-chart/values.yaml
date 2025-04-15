@@ -1,6 +1,6 @@
     name: microservices-full-code-kafka-1
     app: kafka
-    image: 172.27.249.245/springboot-microservices/confluentinc/cp-kafka:latest   
+    image: http://172.27.249.245/springboot-microservices/confluentinc/cp-kafka:latest   
     replicaCount: 1
     env:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
@@ -175,7 +175,7 @@
 
     name: notification
     app: notification-service
-    image: 172.27.249.245/springboot-microservices/notification:latest   
+    image: http://172.27.249.245/springboot-microservices/notification:latest   
     replicaCount: 1
     
     port: 8040
