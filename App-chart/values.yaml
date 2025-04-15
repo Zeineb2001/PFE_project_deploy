@@ -1,7 +1,6 @@
     name: microservices-full-code-kafka-1
     app: kafka
-    image: 172.27.249.245/springboot-microservices/confluentinc/cp-kafka:latest
-    replicaCount: 1       
+    image: 172.27.249.245/springboot-microservices/confluentinc/cp-kafka:latest      
     env:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_BROKER_ID: "1"
@@ -18,8 +17,7 @@
     name: mongo_db
     app: mongodb
     image: 172.27.249.245/springboot-microservices/mongo:latest
-
-    replicaCount: 1     
+  
     env:
       - MONGO_INITDB_ROOT_USERNAME=alibou
       - MONGO_INITDB_ROOT_PASSWORD=alibou
@@ -32,8 +30,7 @@
     name: mongo_express
     app: mongo-express
     image: 172.27.249.245/springboot-microservices/mongo-express:latest
-
-    replicaCount: 1     
+    
     env:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=alibou
       - ME_CONFIG_MONGODB_ADMINPASSWORD=alibou
@@ -45,8 +42,7 @@
 
     name: ms_pg_sql
     app: postgresql
-    image: 172.27.249.245/springboot-microservices/confluentinc/postgres:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/confluentinc/postgres:latest  
     env:
       PGDATA: /data/postgres
       POSTGRES_PASSWORD: alibou
@@ -59,8 +55,7 @@
 
     name: microservices-full-code-zookeeper-1
     app: zookeeper
-    image: 172.27.249.245/springboot-microservices/confluentinc/cp-zookeeper:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/confluentinc/cp-zookeeper:latest   
     env:
       ZOOKEEPER_CLIENT_PORT: "2181"
       ZOOKEEPER_TICK_TIME: "2000"
@@ -70,8 +65,7 @@
 
     name: zipkin
     app: zipkin
-    image: 172.27.249.245/springboot-microservices/openzipkin/zipkin:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/openzipkin/zipkin:latest    
     port: 9411
     targetPort: 9411
     type: LoadBalancer
@@ -79,16 +73,14 @@
 
     name: ms-mail-dev
     app: mail-dev
-    image: 172.27.249.245/springboot-microservices/maildev/maildev:latest
-    replicaCount: 1      
+    image: 172.27.249.245/springboot-microservices/maildev/maildev:latest     
     port: 1080
     targetport: 1080
     type: LoadBalancer
 
     name: customer
     app: customer-service
-    image: 172.27.249.245/springboot-microservices/customer:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/customer:latest   
     port: 8090
     targetPort: 8090
     env:
@@ -102,7 +94,6 @@
 
     name: gateway
     app: gateway
-    replicaCount: 1
     image: 172.27.249.245/springboot-microservices/gateway:latest
     env:
       SPRING_PROFILES_ACTIVE: docker
@@ -115,8 +106,7 @@
 
     name: discovery
     app: discovery
-    image: 172.27.249.245/springboot-microservices/discovery:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/discovery:latest   
     port: 8761
     targetPort: 8761
     env:
@@ -127,8 +117,7 @@
 
     name: product
     app: product-service
-    image: 172.27.249.245/springboot-microservices/product:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/product:latest    
     port: 8050
     targetPort: 8050
     env:
@@ -138,8 +127,7 @@
 
     name: order
     app: order-service
-    image: 172.27.249.245/springboot-microservices/order:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/order:latest   
     port: 8070
     targetPort: 8070
     env:
@@ -175,8 +163,7 @@
 
     name: notification
     app: notification-service
-    image: 172.27.249.245/springboot-microservices/notification:latest
-    replicaCount: 1     
+    image: 172.27.249.245/springboot-microservices/notification:latest   
     port: 8040
     targetPort: 8040
     env:
