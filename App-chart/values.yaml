@@ -109,7 +109,7 @@ secret:
 
 # Mongo Express
 mongoExpress:
-  container: mongo_express
+  container: mongo-express
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/mongo-express
@@ -128,7 +128,7 @@ mongoExpress:
 
 # MongoDB
 mongodb:
-  container: mongo_db
+  container: mongo-db
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/mongo
@@ -223,7 +223,7 @@ payment:
 
 
 postgres:
-  container: ms_pg_sql
+  container: ms-pg-sql
   replicas: 1
   image:
     repository: 172.27.249.245/springboot-microservices/postgres
