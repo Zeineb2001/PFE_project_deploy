@@ -68,6 +68,6 @@ spec:
     app: notification
   ports:
     - protocol: TCP
-      port: {{ .Values.notification.service.Port }}
-      targetPort: {{ .Values.notification.service.targetPort }}
+      port: {{ .Values.notification.service.Port | default 8080 }}
+      targetPort: {{ .Values.notification.service.targetPort | default 8080}}
   type: {{ .Values.notification.service.type}}

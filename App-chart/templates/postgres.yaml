@@ -55,6 +55,6 @@ spec:
     app: postgres
   ports:
     - protocol: TCP
-      port: {{ .Values.postgres.service.Port }}
-      targetPort: {{ .Values.postgres.service.targetPort }}
+      port: {{ .Values.postgres.service.Port | default 8080 }}
+      targetPort: {{ .Values.postgres.service.targetPort | default 8080 }}
   type: {{ .Values.postgres.service.type }}
