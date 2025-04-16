@@ -141,7 +141,6 @@ mongodb:
 
 # Notification Service
 notification:
-  container: notification
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/notification
