@@ -13,7 +13,7 @@ spec:
         app: zookeeper
     spec:
       containers:
-        - name: {{ .Values.zookeeper.container }}
+        - name: zookeeper-container
           image: {{ .Values.zookeeper.image.repository }}:{{ .Values.zookeeper.image.tag }}
           imagePullPolicy: {{ .Values.zookeeper.image.pullPolicy }}
           env:

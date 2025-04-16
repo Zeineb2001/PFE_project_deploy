@@ -13,7 +13,7 @@ spec:
         app: mail-dev
     spec:
       containers:
-        - name: {{ .Values.mailDev.container}}
+        - name: mail-container
           image: {{ .Values.mailDev.image.repository }}:{{ .Values.mailDev.image.tag }}
           imagePullPolicy: {{ .Values.mailDev.image.pullPolicy }}
           ports:

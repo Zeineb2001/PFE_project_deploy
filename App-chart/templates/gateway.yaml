@@ -15,7 +15,7 @@ spec:
         app: gateway
     spec:
       containers:
-        - name: {{ .Values.gateway.container }}
+        - name: gateway-container
           image: {{ .Values.gateway.image.repository }}:{{ .Values.gateway.image.tag }}
           imagePullPolicy: {{ .Values.gateway.image.pullPolicy }}
           ports:

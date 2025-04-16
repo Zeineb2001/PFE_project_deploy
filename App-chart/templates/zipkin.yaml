@@ -13,7 +13,7 @@ spec:
         app: zipkin
     spec:
       containers:
-        - name: {{ .Values.zipkin.container}}
+        - name: zipkin-container
           image: {{ .Values.zipkin.image.repository }}:{{ .Values.zipkin.image.tag }}
           imagePullPolicy: {{ .Values.zipkin.image.pullPolicy }}
           ports:

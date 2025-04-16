@@ -15,7 +15,7 @@ spec:
         app: payment
     spec:
       containers:
-        - name: {{ .Values.payment.container}}
+        - name: payment-container
           image: {{ .Values.payment.image.repository }}:{{ .Values.payment.image.tag }}
           imagePullPolicy: {{ .Values.payment.image.pullPolicy }}
           ports:

@@ -13,7 +13,7 @@ spec:
         app: mongodb
     spec:
       containers:
-        - name: {{ .Values.mongodb.container }}
+        - name: mongo-container
           image: {{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}
           imagePullPolicy: {{ .Values.mongodb.image.pullPolicy }}
           ports:

@@ -15,7 +15,7 @@ spec:
         app: customer
     spec:
       containers:
-        - name: {{ .Values.customer.container}}
+        - name: customer-container
           image: {{ .Values.customer.image.repository }}:{{ .Values.customer.image.tag }}
           imagePullPolicy: {{ .Values.customer.image.pullPolicy }}
           ports:

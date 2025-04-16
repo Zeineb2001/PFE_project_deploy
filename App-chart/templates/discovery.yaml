@@ -15,7 +15,7 @@ spec:
         app: discovery
     spec:
       containers:
-        - name: {{ .Values.discovery.container}}
+        - name: discovery-container
           image: {{ .Values.discovery.image.repository }}:{{ .Values.discovery.image.tag }}
           imagePullPolicy: {{ .Values.discovery.image.pullPolicy }}
           ports:

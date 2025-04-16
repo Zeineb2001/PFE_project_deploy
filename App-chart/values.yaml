@@ -1,6 +1,5 @@
 # Discovery Service
 discovery:
-  Container: discovery
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/discovery
@@ -17,7 +16,6 @@ discovery:
 
 # Gateway Service
 gateway:
-  container: gateway
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/gateway
@@ -35,7 +33,6 @@ gateway:
 
 # Customer Service
 customer:
-  container: customer
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/customer
@@ -55,7 +52,6 @@ customer:
 
 # Kafka Service
 kafka:
-  container: microservices-full-code-kafka-1
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/confluentinc/cp-kafka
@@ -79,7 +75,6 @@ kafka:
 
 # MailDev
 mailDev:
-  conatiner: ms-mail-dev
   replicaCount: 1
   image:
     repository: maildev/maildev
@@ -109,7 +104,6 @@ secret:
 
 # Mongo Express
 mongoExpress:
-  container: mongo-express
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/mongo-express
@@ -128,7 +122,6 @@ mongoExpress:
 
 # MongoDB
 mongodb:
-  container: mongo-db
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/mongo
@@ -179,7 +172,6 @@ notification:
 
 # Order Service
 order:
-  container: order
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/order
@@ -201,7 +193,6 @@ order:
 
 # Payment Service
 payment:
-  container: payment
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/payment
@@ -223,7 +214,6 @@ payment:
 
 
 postgres:
-  container: ms-pg-sql
   replicas: 1
   image:
     repository: 172.27.249.245/springboot-microservices/postgres
@@ -246,7 +236,6 @@ postgres:
 
 # Product Service
 product:
-  container: product
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/product
@@ -267,7 +256,6 @@ product:
 
 # Zipkin
 zipkin:
-  container: zipkin
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/openzipkin/zipkin
@@ -280,7 +268,6 @@ zipkin:
 
 # Zookeeper
 zookeeper:
-  container: microservices-full-code-zookeeper-1
   replicaCount: 1
   image:
     repository: 172.27.249.245/springboot-microservices/confluentinc/cp-zookeeper

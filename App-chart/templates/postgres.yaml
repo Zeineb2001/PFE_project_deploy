@@ -15,7 +15,7 @@ spec:
         app: postgres
     spec:
       containers:
-        - name: {{ .Values.postgres.container }}
+        - name: postgres-container
           image: {{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}
           ports:
             - containerPort: {{ .Values.postgres.service.targetPort }}

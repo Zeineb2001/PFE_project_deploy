@@ -15,7 +15,7 @@ spec:
         app: notification
     spec:
       containers:
-        - name: {{ .Values.notification.container}}
+        - name: notification-container
           image: {{ .Values.notification.image.repository }}:{{ .Values.notification.image.tag }}
           imagePullPolicy: {{ .Values.notification.image.pullPolicy }}
           ports:

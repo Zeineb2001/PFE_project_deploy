@@ -13,7 +13,7 @@ spec:
         app: kafka
     spec:
       containers:
-        - name: {{ .Values.kafka.container }}
+        - name: kafka-container
           image: {{ .Values.kafka.image.repository }}:{{ .Values.kafka.image.tag }}
           imagePullPolicy: {{ .Values.kafka.image.pullPolicy }}
           env:
