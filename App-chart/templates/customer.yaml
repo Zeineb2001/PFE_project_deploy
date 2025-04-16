@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer
+  labels:
+    app: customer
+spec:
+  replicas: {{ .Values.customer.replicaCount }}
+  selector:
+    matchLabels:
+      app: customer
+  template:
+    metadata:
+      labels:
+        app: customer
+    spec:
+      containers:
+        - name: {{ .Values.customer.container}}
+          image: {{ .Values.customer.image.repository }}:{{ .Values.customer.image.tag }}
+          imagePullPolicy: {{ .Values.customer.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.customer.service.targetPort }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.customer.env.SPRING_PROFILES_ACTIVE }}"
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: "{{ .Values.customer.env.MONGO_INITDB_ROOT_USERNAME }}"
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: "{{ .Values.customer.env.MONGO_INITDB_ROOT_PASSWORD }}"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "{{ .Values.customer.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.customer.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer
+spec:
+  selector:
+    app: customer
+  ports:
+    - protocol: TCP
+      port: {{ .Values.customer.service.Port }}
+      targetPort: {{ .Values.customer.service.targetPort }}
+  type: {{ .Values.customer.service.type }}

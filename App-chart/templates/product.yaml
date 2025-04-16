@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product
+  labels:
+    app: product
+spec:
+  replicas: {{ .Values.product.replicaCount }}
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+        - name: {{ .Values.product.container }}
+          image: {{ .Values.product.image.repository }}:{{ .Values.product.image.tag }}
+          imagePullPolicy: {{ .Values.product.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.product.service.targetPort }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.product.env.SPRING_PROFILES_ACTIVE }}"
+            - name: SPRING_DATASOURCE_URL
+              value: "{{ .Values.product.env.SPRING_DATASOURCE_URL }}"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "{{ .Values.product.env.SPRING_DATASOURCE_USERNAME }}"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "{{ .Values.product.env.SPRING_DATASOURCE_PASSWORD }}"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "{{ .Values.product.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.product.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              value: "{{ .Values.product.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+      imagePullSecrets:
+            - name: harbor-secret              
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product
+spec:
+  selector:
+    app: product
+  ports:
+    - protocol: TCP
+      port: {{ .Values.product.service.port }}
+      targetPort: {{ .Values.product.service.targetPort }}
+  type: {{ .Values.product.service.type }}

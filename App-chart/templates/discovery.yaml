@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery
+  labels:
+    app: discovery
+spec:
+  replicas: {{ .Values.discovery.replicaCount }}
+  selector:
+    matchLabels:
+      app: discovery
+  template:
+    metadata:
+      labels:
+        app: discovery
+    spec:
+      containers:
+        - name: {{ .Values.discovery.container}}
+          image: {{ .Values.discovery.image.repository }}:{{ .Values.discovery.image.tag }}
+          imagePullPolicy: {{ .Values.discovery.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.discovery.service.targetPort }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.discovery.env.SPRING_PROFILES_ACTIVE }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.discovery.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              value: "{{ .Values.discovery.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery
+spec:
+  selector:
+    app: discovery
+  ports:
+    - protocol: TCP
+      port: {{ .Values.discovery.service.port }}
+      targetPort: {{ .Values.discovery.service.targetPort }}
+  type: {{ .Values.discovery.service.type }}  

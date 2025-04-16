@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification
+  labels:
+    app: notification
+spec:
+  replicas: {{ .Values.notification.replicaCount }}
+  selector:
+    matchLabels:
+      app: notification
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      containers:
+        - name: {{ .Values.notification.container}}
+          image: {{ .Values.notification.image.repository }}:{{ .Values.notification.image.tag }}
+          imagePullPolicy: {{ .Values.notification.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.notification.service.targetPort }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.notification.env.SPRING_PROFILES_ACTIVE }}"
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "{{ .Values.notification.env.EUREKA_INSTANCE_HOSTNAME }}"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "{{ .Values.notification.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE }}"
+            - name: SPRING_APPLICATION_NAME
+              value: "{{ .Values.notification.env.SPRING_APPLICATION_NAME }}"
+            - name: SPRING_DATA_MONGODB_USERNAME
+              value: "{{ .Values.notification.env.SPRING_DATA_MONGODB_USERNAME }}"
+            - name: SPRING_DATA_MONGODB_PASSWORD
+              value: "{{ .Values.notification.env.SPRING_DATA_MONGODB_PASSWORD }}"
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "{{ .Values.notification.env.SPRING_DATA_MONGODB_HOST }}"
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "{{ .Values.notification.env.SPRING_DATA_MONGODB_PORT }}"
+            - name: SPRING_DATA_MONGODB_DATABASE
+              value: "{{ .Values.notification.env.SPRING_DATA_MONGODB_DATABASE }}"
+            - name: SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE
+              value: "{{ .Values.notification.env.SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE }}"
+            - name: SPRING_MAIL_HOST
+              value: "{{ .Values.notification.env.SPRING_MAIL_HOST }}"
+            - name: SPRING_MAIL_PORT
+              value: "{{ .Values.notification.env.SPRING_MAIL_PORT }}"
+            - name: SPRING_MAIL_USERNAME
+              value: "{{ .Values.notification.env.SPRING_MAIL_USERNAME }}"
+            - name: SPRING_MAIL_PASSWORD
+              value: "{{ .Values.notification.env.SPRING_MAIL_PASSWORD }}"
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "{{ .Values.notification.env.SPRING_KAFKA_BOOTSTRAP_SERVERS }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.notification.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              value: "{{ .Values.notification.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}" 
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification
+spec:
+  selector:
+    app: notification
+  ports:
+    - protocol: TCP
+      port: {{ .Values.notification.service.Port }}
+      targetPort: {{ .Values.notification.service.targetPort }}
+  type: {{ .Values.notification.service.type}}

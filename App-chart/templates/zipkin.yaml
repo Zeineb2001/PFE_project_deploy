@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+spec:
+  replicas: {{ .Values.zipkin.replicaCount }}
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      labels:
+        app: zipkin
+    spec:
+      containers:
+        - name: {{ .Values.zipkin.container}}
+          image: {{ .Values.zipkin.image.repository }}:{{ .Values.zipkin.image.tag }}
+          imagePullPolicy: {{ .Values.zipkin.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.zipkin.service.targetPort }}
+      imagePullSecrets:
+            - name: harbor-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+spec:
+  selector:
+    app: zipkin
+  ports:
+    - protocol: TCP
+      port: {{ .Values.zipkin.service.port }}
+      targetPort: {{ .Values.zipkin.service.targetPort }}
+  type: {{ .Values.zipkin.service.type }}

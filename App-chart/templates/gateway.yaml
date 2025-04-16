@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  labels:
+    app: gateway
+spec:
+  replicas: {{ .Values.gateway.replicaCount }}
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      containers:
+        - name: {{ .Values.gateway.container }}
+          image: {{ .Values.gateway.image.repository }}:{{ .Values.gateway.image.tag }}
+          imagePullPolicy: {{ .Values.gateway.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.gateway.service.targetPort }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.gateway.env.SPRING_PROFILES_ACTIVE }}"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "{{ .Values.gateway.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.gateway.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              value: "{{ .Values.gateway.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  selector:
+    app: gateway
+  ports:
+    - protocol: TCP
+      port: {{ .Values.gateway.service.port }}
+      targetPort: {{ .Values.gateway.service.targetPort }}
+  type: {{ .Values.gateway.service.type }}  

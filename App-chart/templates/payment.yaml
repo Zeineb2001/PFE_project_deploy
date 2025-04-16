@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    app: payment
+spec:
+  replicas: {{ .Values.payment.replicaCount }}
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      containers:
+        - name: {{ .Values.payment.container}}
+          image: {{ .Values.payment.image.repository }}:{{ .Values.payment.image.tag }}
+          imagePullPolicy: {{ .Values.payment.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.payment.service.targetPort }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.payment.env.SPRING_PROFILES_ACTIVE }}"
+            - name: SPRING_DATASOURCE_URL
+              value: "{{ .Values.payment.env.SPRING_DATASOURCE_URL }}"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "{{ .Values.payment.env.SPRING_DATASOURCE_USERNAME }}"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "{{ .Values.payment.env.SPRING_DATASOURCE_PASSWORD }}"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "{{ .Values.payment.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE }}"
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "{{ .Values.payment.env.SPRING_KAFKA_BOOTSTRAP_SERVERS }}"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "{{ .Values.payment.env.KAFKA_BOOTSTRAP_SERVERS }}"
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: "{{ .Values.payment.env.KAFKA_ADVERTISED_LISTENERS }}"
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              value: "{{ .Values.payment.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              value: "{{ .Values.payment.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+      imagePullSecrets:
+            - name: harbor-secret              
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+spec:
+  selector:
+    app: payment
+  ports:
+    - protocol: TCP
+      port: {{ .Values.payment.service.Port }}
+      targetPort: {{ .Values.payment.service.targetPort }}
+  type: {{ .Values.payment.service.type }}

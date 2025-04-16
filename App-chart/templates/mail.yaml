@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mail-dev
+spec:
+  replicas: {{ .Values.mailDev.replicaCount }}
+  selector:
+    matchLabels:
+      app: mail-dev
+  template:
+    metadata:
+      labels:
+        app: mail-dev
+    spec:
+      containers:
+        - name: {{ .Values.mailDev.container}}
+          image: {{ .Values.mailDev.image.repository }}:{{ .Values.mailDev.image.tag }}
+          imagePullPolicy: {{ .Values.mailDev.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.mailDev.service.Port }}
+            - containerPort: {{ .Values.mailDev.service.targetPort }}
+
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mail-dev
+spec:
+  selector:
+    app: mail-dev
+  ports:
+      protocol: TCP
+      port: {{ .Values.mailDev.service.port }}
+      targetPort: {{ .Values.mailDev.service.targetPort }}
+      port: {{ .Values.mailDev.service.port }}
+      targetPort: {{ .Values.mailDev.service.targetPort }}
+  type: {{ .Values.mailDev.service.type }}
+
