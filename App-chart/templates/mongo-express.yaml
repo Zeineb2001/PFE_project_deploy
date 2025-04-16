@@ -13,7 +13,7 @@ spec:
         app: mongo-express
     spec:
       containers:
-        - name: {{ .Values.mongoExpress.container }}
+        - name: mongo-express-container
           image: {{ .Values.mongoExpress.image.repository }}:{{ .Values.mongoExpress.image.tag }}
           imagePullPolicy: {{ .Values.mongoExpress.image.pullPolicy }}
           ports:

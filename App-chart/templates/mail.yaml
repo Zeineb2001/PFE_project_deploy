@@ -17,7 +17,7 @@ spec:
           image: {{ .Values.mailDev.image.repository }}:{{ .Values.mailDev.image.tag }}
           imagePullPolicy: {{ .Values.mailDev.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.mailDev.service.Port }}
+            - containerPort: {{ .Values.mailDev.service.targetPort }}
             - containerPort: {{ .Values.mailDev.service.targetPort }}
 
 
