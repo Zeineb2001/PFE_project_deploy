@@ -8,7 +8,7 @@ discovery:
   service:
     port: 8761
     targetPort: 8761
-    type: ClusterIP
+    type: NodePort
   env:
     SPRING_PROFILES_ACTIVE: docker
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
@@ -24,7 +24,7 @@ gateway:
   service:
     port: 8222
     targetPort: 8222
-    type: ClusterIP
+    type: NodePort
   env:
     SPRING_PROFILES_ACTIVE: docker
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
@@ -99,6 +99,44 @@ secret:
   POSTGRES_USER: alibou
   POSTGRES_PASSWORD: alibou
 
+postgresql:
+  replicas: 1
+  image:
+    repository: 172.27.249.245/springboot-microservices/postgres
+    tag: latest
+  env:
+    POSTGRES_USER_SECRET_NAME: postgres-secret
+    POSTGRES_USER_SECRET_KEY: POSTGRES_USER
+    POSTGRES_PASSWORD_SECRET_NAME: postgres-secret
+    POSTGRES_PASSWORD_SECRET_KEY: POSTGRES_PASSWORD
+    PGDATA_CONFIGMAP_NAME: postgres-config
+    PGDATA_CONFIGMAP_KEY: PGDATA
+  volumeMounts:
+    mountPath: /data/postgres
+  service:
+    port: 5432
+    targetPort: 5432
+    type: NodePort
+
+product:
+  replicaCount: 1
+  image:
+    repository: 172.27.249.245/springboot-microservices/product
+    tag: latest
+    pullPolicy: Always
+  service:
+    port: 8050
+    targetPort: 8050
+    type: ClusterIP
+  env:
+    SPRING_PROFILES_ACTIVE: docker
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/product
+    SPRING_DATASOURCE_USERNAME: alibou
+    SPRING_DATASOURCE_PASSWORD: alibou
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
+    MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+    
 # Mongo Express
 mongoExpress:
   replicaCount: 1
@@ -109,7 +147,7 @@ mongoExpress:
   service:
     port: 8081
     targetPort: 8081
-    type: ClusterIP
+    type: NodePort
   env:
     configMapName: mongo-config
     secretName: mongodb-secret
@@ -127,7 +165,7 @@ mongodb:
   service:
     port: 27017
     targetPort: 27017
-    type: ClusterIP
+    type: NodePort
   env:
     secretName: mongodb-secret
     usernameKey: MONGO_INITDB_ROOT_USERNAME
@@ -207,44 +245,6 @@ payment:
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 
-postgresql:
-  replicas: 1
-  image:
-    repository: 172.27.249.245/springboot-microservices/postgres
-    tag: latest
-  env:
-    POSTGRES_USER_SECRET_NAME: postgres-secret
-    POSTGRES_USER_SECRET_KEY: POSTGRES_USER
-    POSTGRES_PASSWORD_SECRET_NAME: postgres-secret
-    POSTGRES_PASSWORD_SECRET_KEY: POSTGRES_PASSWORD
-    PGDATA_CONFIGMAP_NAME: postgres-config
-    PGDATA_CONFIGMAP_KEY: PGDATA
-  volumeMounts:
-    mountPath: /data/postgres
-  service:
-    port: 5432
-    targetPort: 5432
-    type: ClusterIP
-
-# Product Service
-product:
-  replicaCount: 1
-  image:
-    repository: 172.27.249.245/springboot-microservices/product
-    tag: latest
-    pullPolicy: Always
-  service:
-    port: 8050
-    targetPort: 8050
-    type: ClusterIP
-  env:
-    SPRING_PROFILES_ACTIVE: docker
-    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/product
-    SPRING_DATASOURCE_USERNAME: alibou
-    SPRING_DATASOURCE_PASSWORD: alibou
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
-    MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 # Zipkin
 zipkin:
@@ -256,7 +256,7 @@ zipkin:
   service:
     port: 9411
     targetPort: 9411
-    type: ClusterIP
+    type: NodePort
 
 # Zookeeper
 zookeeper:
@@ -268,7 +268,7 @@ zookeeper:
   service:
     port: 2181
     targetPort: 2181
-    type: ClusterIP
+    type: NodePort
   env:
     ZOOKEEPER_CLIENT_PORT: 2181
     ZOOKEEPER_TICK_TIME: 2000
