@@ -58,11 +58,12 @@ kafka:
     tag: latest
     pullPolicy: IfNotPresent
   service:
-      port: 9092
-      targetPort: 9092
-      port: 29092
-      targetPort: 29092
-      type: ClusterIP
+    ports:
+      - port: 9092
+        targetPort: 9092
+      - port: 29092
+        targetPort: 29092
+    type: NodePort
   env:
     KAFKA_BROKER_ID: "1"
     KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
