@@ -55,7 +55,8 @@ spec:
               value: "{{ .Values.notification.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: "{{ .Values.notification.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}" 
-
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: "{{ .Values.notification.env.KAFKA_ADVERTISED_LISTENERS }}"
 
 ---
 
