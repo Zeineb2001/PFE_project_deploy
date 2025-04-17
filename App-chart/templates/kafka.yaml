@@ -32,10 +32,10 @@ spec:
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
               value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"
           ports:
-            {{- range .Values.kafka.service.ports }}
-            - containerPort: {{ .targetPort }}
-            {{- end }}
-
+            - name: internal
+              containerPort: {{ .Values.kafka.service.ports.internal.targetPort }}
+            - name: external
+              containerPort: {{ .Values.kafka.service.ports.external.targetPort }}
 
 ---
 
@@ -47,10 +47,12 @@ spec:
   selector:
     app: kafka
   ports:
-    {{- range .Values.kafka.service.ports }}
-    - protocol: TCP
-      port: {{ .port }}
-      targetPort: {{ .targetPort }}
-    {{- end }}
+    - name: internal
+      protocol: TCP
+      port: {{ .Values.kafka.service.ports.internal.port }}
+      targetPort: {{ .Values.kafka.service.ports.internal.targetPort }}
+    - name: external
+      protocol: TCP
+      port: {{ .Values.kafka.service.ports.external.port }}
+      targetPort: {{ .Values.kafka.service.ports.external.targetPort }}
   type: {{ .Values.kafka.service.type }}
- 
