@@ -209,7 +209,7 @@ payment:
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 
-postgres:
+postgresql:
   replicas: 1
   image:
     repository: 172.27.249.245/springboot-microservices/postgres
