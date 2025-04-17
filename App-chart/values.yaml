@@ -76,7 +76,7 @@ kafka:
 mailDev:
   replicaCount: 1
   image:
-    repository: maildev/maildev
+    repository: 172.27.249.245/springboot-microservices/maildev/maildev
     tag: latest
     pullPolicy: IfNotPresent
   service:
