@@ -53,6 +53,6 @@ spec:
     app: payment
   ports:
     - protocol: TCP
-      port: {{ .Values.payment.service.Port | default 8080}}
-      targetPort: {{ .Values.payment.service.targetPort | default 8080}}
+      port: {{ .Values.payment.service.port}}
+      targetPort: {{ .Values.payment.service.targetPort}}
   type: {{ .Values.payment.service.type }}

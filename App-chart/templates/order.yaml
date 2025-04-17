@@ -54,6 +54,6 @@ spec:
     app: order
   ports:
     - protocol: TCP
-      port: {{ .Values.order.service.Port | default 8080}}
-      targetPort: {{ .Values.order.service.targetPort | default 8080 }}
+      port: {{ .Values.order.service.port}}
+      targetPort: {{ .Values.order.service.targetPort}}
   type: {{ .Values.order.service.type }}
