@@ -36,8 +36,11 @@ spec:
                   name: {{ .Values.postgres.env.PGDATA_CONFIGMAP_NAME }}
                   key: {{ .Values.postgres.env.PGDATA_CONFIGMAP_KEY }}
           volumeMounts:
-            - name: postgres-data
-              mountPath: {{ .Values.postgres.volumeMounts.mountPath }}
+            - name: postgres
+              mountPath: /data/postgres
+      volumes:
+        - name: postgres
+          emptyDir: {}
       imagePullSecrets:
             - name: harbor-secret            
 ---
