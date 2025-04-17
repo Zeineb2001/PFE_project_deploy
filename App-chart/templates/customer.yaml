@@ -45,6 +45,6 @@ spec:
     app: customer
   ports:
     - protocol: TCP
-      port: {{ .Values.customer.service.Port | default 8080 }}
-      targetPort: {{ .Values.customer.service.targetPort | default 8080 }}
+      port: {{ .Values.customer.service.port}}
+      targetPort: {{ .Values.customer.service.targetPort}}
   type: {{ .Values.customer.service.type }}
