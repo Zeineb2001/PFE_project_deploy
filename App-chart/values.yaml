@@ -221,8 +221,6 @@ postgres:
     PGDATA_CONFIGMAP_KEY: PGDATA
   volumeMounts:
     mountPath: /data/postgres
-  volumeClaim:
-    claimName: postgres-pvc
   service:
     port: 5432
     targetPort: 5432

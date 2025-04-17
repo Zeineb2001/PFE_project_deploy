@@ -38,10 +38,6 @@ spec:
           volumeMounts:
             - name: postgres-storage
               mountPath: {{ .Values.postgres.volumeMounts.mountPath }}
-      volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: {{ .Values.postgres.volumeClaim.claimName }}
       imagePullSecrets:
             - name: harbor-secret            
 ---
