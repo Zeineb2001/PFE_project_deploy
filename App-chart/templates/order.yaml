@@ -35,8 +35,6 @@ spec:
               value: "{{ .Values.order.env.SPRING_KAFKA_BOOTSTRAP_SERVERS }}"
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: "{{ .Values.order.env.KAFKA_BOOTSTRAP_SERVERS }}"
-            - name: KAFKA_ADVERTISED_LISTENERS
-              value: "{{ .Values.order.env.KAFKA_ADVERTISED_LISTENERS }}"
             - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
               value: "{{ .Values.order.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
