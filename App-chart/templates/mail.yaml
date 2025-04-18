@@ -19,7 +19,8 @@ spec:
           ports:
             - containerPort: {{ .Values.mailDev.service.targetPort }}
             - containerPort: {{ .Values.mailDev.service.targetPort }}
-
+      imagePullSecrets:
+            - name: harbor-secret  
 
 
 ---

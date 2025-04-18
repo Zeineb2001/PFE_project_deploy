@@ -36,7 +36,8 @@ spec:
               containerPort: {{ .Values.kafka.service.internal.targetPort }}
             - name: external
               containerPort: {{ .Values.kafka.service.external.targetPort }}        
-
+      imagePullSecrets:
+            - name: harbor-secret  
 ---
 
 apiVersion: v1

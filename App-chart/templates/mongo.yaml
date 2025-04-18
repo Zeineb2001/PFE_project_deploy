@@ -35,6 +35,8 @@ spec:
       volumes:
         - name: mongo-data
           emptyDir: {}  # tu peux remplacer par un PersistentVolumeClaim si enabled = true
+      imagePullSecrets:
+            - name: harbor-secret            
 
 ---
 

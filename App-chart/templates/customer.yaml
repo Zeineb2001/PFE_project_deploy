@@ -32,7 +32,9 @@ spec:
             - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
               value: "{{ .Values.customer.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
-              value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+              value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"   
+      imagePullSecrets:
+            - name: harbor-secret                         
 ---
 
 apiVersion: v1
