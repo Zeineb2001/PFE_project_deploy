@@ -58,6 +58,12 @@ kafka:
     tag: latest
     pullPolicy: IfNotPresent
   service:
+    external:
+      port: 9092
+      targetPort: 9092
+    internal:
+      port: 29092
+      targetPort: 29092
     type: ClusterIP
   env:
     KAFKA_BROKER_ID: "1"
