@@ -2,7 +2,7 @@
 discovery:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/discovery
+    repository: localhost/springboot-microservices/discovery
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -18,7 +18,7 @@ discovery:
 gateway:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/gateway
+    repository: localhost/springboot-microservices/gateway
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -35,7 +35,7 @@ gateway:
 customer:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/customer
+    repository: localhost/springboot-microservices/customer
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -54,7 +54,7 @@ customer:
 kafka:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/confluentinc/cp-zookeeper
+    repository: localhost/springboot-microservices/confluentinc/cp-zookeeper
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -78,7 +78,7 @@ kafka:
 mailDev:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/maildev/maildev:latest
+    repository: localhost/springboot-microservices/maildev/maildev:latest
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -106,7 +106,7 @@ secret:
 postgresql:
   replicas: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/postgres
+    repository: localhost/springboot-microservices/postgres
     tag: latest
   env:
     POSTGRES_USER_SECRET_NAME: postgres-secret
@@ -125,7 +125,7 @@ postgresql:
 product:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/product
+    repository: localhost/springboot-microservices/product
     tag: latest
     pullPolicy: Always
   service:
@@ -145,7 +145,7 @@ product:
 mongoExpress:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/mongo-express
+    repository: localhost/springboot-microservices/mongo-express
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -163,7 +163,7 @@ mongoExpress:
 mongodb:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/mongo
+    repository: localhost/springboot-microservices/mongo
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -182,7 +182,7 @@ mongodb:
 notification:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/notification
+    repository: localhost/springboot-microservices/notification
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -210,7 +210,7 @@ notification:
 order:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/order
+    repository: localhost/springboot-microservices/order
     tag: latest
     pullPolicy: Always
   service:
@@ -231,7 +231,7 @@ order:
 payment:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/payment
+    repository: localhost/springboot-microservices/payment
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -254,7 +254,7 @@ payment:
 zipkin:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/openzipkin/zipkin
+    repository: localhost/springboot-microservices/openzipkin/zipkin
     tag: latest
     pullPolicy: Always
   service:
@@ -266,7 +266,7 @@ zipkin:
 zookeeper:
   replicaCount: 1
   image:
-    repository: 172.27.240.1/springboot-microservices/confluentic/cp-zookeeper
+    repository: localhost/springboot-microservices/confluentic/cp-zookeeper
     tag: latest
     pullPolicy: Always
   service:
