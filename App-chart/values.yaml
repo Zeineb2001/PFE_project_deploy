@@ -2,7 +2,7 @@
 discovery:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/discovery
+    repository: docker.io/zeinebmessaoudi/discovery
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -18,7 +18,7 @@ discovery:
 gateway:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/gateway
+    repository: docker.io/zeinebmessaoudi/gateway
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -35,7 +35,7 @@ gateway:
 customer:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/customer
+    repository: docker.io/zeinebmessaoudi/customer
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -54,7 +54,7 @@ customer:
 kafka:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/zookeeper
+    repository: docker.io/zeinebmessaoudi/zookeeper
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -78,7 +78,7 @@ kafka:
 mailDev:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/maildev
+    repository: docker.io/zeinebmessaoudi/maildev
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -106,7 +106,7 @@ secret:
 postgresql:
   replicas: 1
   image:
-    repository: zeinebmessaoudi/postgres
+    repository: docker.io/zeinebmessaoudi/postgres
     tag: latest
   env:
     POSTGRES_USER_SECRET_NAME: postgres-secret
@@ -125,7 +125,7 @@ postgresql:
 product:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/product
+    repository: docker.io/zeinebmessaoudi/product
     tag: latest
     pullPolicy: Always
   service:
@@ -145,7 +145,7 @@ product:
 mongoExpress:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/mongo-express
+    repository: docker.io/zeinebmessaoudi/mongo-express
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -163,7 +163,7 @@ mongoExpress:
 mongodb:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/mongo
+    repository: docker.io/zeinebmessaoudi/mongo
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -182,7 +182,7 @@ mongodb:
 notification:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/notification
+    repository: docker.io/zeinebmessaoudi/notification
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -210,7 +210,7 @@ notification:
 order:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/order
+    repository: docker.io/zeinebmessaoudi/order
     tag: latest
     pullPolicy: Always
   service:
@@ -231,7 +231,7 @@ order:
 payment:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/payment
+    repository: docker.io/zeinebmessaoudi/payment
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -254,7 +254,7 @@ payment:
 zipkin:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/zipkin
+    repository: docker.io/zeinebmessaoudi/zipkin
     tag: latest
     pullPolicy: Always
   service:
@@ -266,7 +266,7 @@ zipkin:
 zookeeper:
   replicaCount: 1
   image:
-    repository: zeinebmessaoudi/zookeeper
+    repository: docker.io/zeinebmessaoudi/zookeeper
     tag: latest
     pullPolicy: Always
   service:
