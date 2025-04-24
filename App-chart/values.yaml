@@ -2,7 +2,7 @@
 discovery:
   replicaCount: 1
   image:
-    repository: localhost/springboot-microservices/discovery
+    repository: localhost:80/springboot-microservices/discovery
     tag: latest
     pullPolicy: IfNotPresent
   service:
