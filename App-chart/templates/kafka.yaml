@@ -31,6 +31,8 @@ spec:
               value: "{{ .Values.kafka.env.KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR }}"
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
               value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"
+            - name: ZOOKEEPER_CLIENT_PORT
+              value: "{{ .Values.zookeeper.env.ZOOKEEPER_CLIENT_PORT }}"              
           ports:
             - name: internal
               containerPort: {{ .Values.kafka.service.internal.targetPort }}
