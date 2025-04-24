@@ -23,8 +23,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "{{ .Values.notification.env.SPRING_PROFILES_ACTIVE }}"
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: "{{ .Values.notification.env.EUREKA_INSTANCE_HOSTNAME }}"
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: "{{ .Values.notification.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE }}"
             - name: SPRING_DATA_MONGODB_USERNAME
