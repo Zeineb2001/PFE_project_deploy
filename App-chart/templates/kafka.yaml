@@ -30,15 +30,10 @@ spec:
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "{{ .Values.kafka.env.KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR }}"
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
-              value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"      
-
-    
+              value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"     
 
           ports:
-            - name: internal
-              containerPort: {{ .Values.kafka.service.internal.targetPort }}
-            - name: external
-              containerPort: {{ .Values.kafka.service.external.targetPort }}        
+              containerPort: {{ .Values.kafka.service.targetPort }}        
       imagePullSecrets:
             - name: harbor-secret  
 ---
@@ -51,13 +46,7 @@ spec:
   selector:
     app: kafka
   ports:
-    - name: external
       protocol: TCP
-      port: {{ .Values.kafka.service.external.port }}
-      targetPort: {{ .Values.kafka.service.external.targetPort }}
-
-    - name: internal
-      protocol: TCP
-      port: {{ .Values.kafka.service.internal.port }}
-      targetPort: {{ .Values.kafka.service.internal.targetPort }}
+      port: {{ .Values.kafka.service.port }}
+      targetPort: {{ .Values.kafka.service.targetPort }}
   type: {{ .Values.kafka.service.type }}
