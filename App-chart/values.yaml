@@ -82,7 +82,7 @@ mailDev:
     tag: latest
     pullPolicy: IfNotPresent
   service:
-    type: ClusterIP
+    type: NodePort
     port: 1080
     targetPort: 1080
     port: 1025
@@ -120,7 +120,7 @@ postgresql:
   service:
     port: 5432
     targetPort: 5432
-    type: NodePort
+    type: ClusterIP
 
 product:
   replicaCount: 1
@@ -169,7 +169,7 @@ mongodb:
   service:
     port: 27017
     targetPort: 27017
-    type: NodePort
+    type: ClusterIP
   env:
     secretName: mongodb-secret
     usernameKey: MONGO_INITDB_ROOT_USERNAME
@@ -272,7 +272,7 @@ zookeeper:
   service:
     port: 2181
     targetPort: 2181
-    type: NodePort
+    type: ClusterIP
   env:
     ZOOKEEPER_CLIENT_PORT: 2181
     ZOOKEEPER_TICK_TIME: 2000
