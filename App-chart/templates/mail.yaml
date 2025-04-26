@@ -17,8 +17,8 @@ spec:
           image: {{ .Values.mailDev.image.repository }}:{{ .Values.mailDev.image.tag }}
           imagePullPolicy: {{ .Values.mailDev.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.mailDev.service.targetPort }}
-            - containerPort: {{ .Values.mailDev.service.targetPort }}
+            - containerPort: {{ .Values.mailDev.service.ports.http.targetPort }}
+            - containerPort: {{ .Values.mailDev.service.ports.smtp.targetPort }}
       imagePullSecrets:
             - name: harbor-secret  
 
@@ -33,10 +33,15 @@ spec:
   selector:
     app: mail-dev
   ports:
-    - protocol: TCP
-      port: {{ .Values.mailDev.service.port }}
-      targetPort: {{ .Values.mailDev.service.targetPort }}
-      port: {{ .Values.mailDev.service.port }}
-      targetPort: {{ .Values.mailDev.service.targetPort }}
+    - name: http
+      protocol: TCP
+      port: {{ .Values.mailDev.service.ports.http.port }}
+      targetPort: {{ .Values.mailDev.service.ports.http.targetPort }}
+      nodePort: {{ .Values.mailDev.service.ports.http.nodePort }}
+    - name: smtp
+      protocol: TCP
+      port: {{ .Values.mailDev.service.ports.smtp.port }}
+      targetPort: {{ .Values.mailDev.service.ports.smtp.targetPort }}
+      nodePort: {{ .Values.mailDev.service.ports.smtp.nodePort }}
   type: {{ .Values.mailDev.service.type }}
 
