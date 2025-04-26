@@ -24,18 +24,17 @@ spec:
             - name: KAFKA_ADVERTISED_LISTENERS
               value: "{{ .Values.kafka.env.KAFKA_ADVERTISED_LISTENERS }}"
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
-              value: "{{ .Values.kafka.env.KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}}"
+              value: "{{ .Values.kafka.env.KAFKA_LISTENER_SECURITY_PROTOCOL_MAP }}"
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
-              value: "{{ .Values.kafka.env.KAFKA_INTER_BROKER_LISTENER_NAME}}"              
+              value: "{{ .Values.kafka.env.KAFKA_INTER_BROKER_LISTENER_NAME }}"               
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "{{ .Values.kafka.env.KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR }}"
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
-              value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"     
-
+              value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"
           ports:
-              containerPort: {{ .Values.kafka.service.targetPort }}        
+            - containerPort: {{ .Values.kafka.service.targetPort }}        
       imagePullSecrets:
-            - name: harbor-secret  
+        - name: harbor-secret
 ---
 
 apiVersion: v1
@@ -46,7 +45,7 @@ spec:
   selector:
     app: kafka
   ports:
-      protocol: TCP
+    - protocol: TCP
       port: {{ .Values.kafka.service.port }}
       targetPort: {{ .Values.kafka.service.targetPort }}
   type: {{ .Values.kafka.service.type }}
