@@ -54,7 +54,7 @@ customer:
 kafka:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/zookeeper
+    repository: docker.io/zeinebmessaoudi/kafka
     tag: latest
     pullPolicy: IfNotPresent
   service:
