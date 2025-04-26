@@ -23,12 +23,17 @@ spec:
               value: "{{ .Values.kafka.env.KAFKA_ZOOKEEPER_CONNECT }}"
             - name: KAFKA_ADVERTISED_LISTENERS
               value: "{{ .Values.kafka.env.KAFKA_ADVERTISED_LISTENERS }}"
-            - name: KAFKA_LISTENERS
-              value: "{{ .Values.kafka.env.KAFKA_LISTENERS }}"            
+            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+              value: "{{ .Values.kafka.env.KAFKA_LISTENER_SECURITY_PROTOCOL_MAP}}"
+            - name: KAFKA_INTER_BROKER_LISTENER_NAME
+              value: "{{ .Values.kafka.env.KAFKA_INTER_BROKER_LISTENER_NAME}}"              
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "{{ .Values.kafka.env.KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR }}"
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
-              value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"            
+              value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"      
+
+    
+
           ports:
             - name: internal
               containerPort: {{ .Values.kafka.service.internal.targetPort }}
