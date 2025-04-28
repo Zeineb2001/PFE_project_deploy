@@ -52,8 +52,6 @@ customer:
 
 kafka:
   replicaCount: 1
-  image: confluentinc/cp-kafka:latest
-    pullPolicy: IfNotPresent
   service:
     port: 9092
     targetPort: 9092
