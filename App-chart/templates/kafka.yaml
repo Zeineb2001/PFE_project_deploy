@@ -29,6 +29,14 @@ spec:
               value: "{{ .Values.kafka.env.KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR }}"
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
               value: "{{ .Values.kafka.env.KAFKA_AUTO_CREATE_TOPICS_ENABLE }}"
+         # Add resource requests and limits here
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1"             
           ports:
             - containerPort: {{ .Values.kafka.service.targetPort }}        
       imagePullSecrets:
