@@ -28,7 +28,38 @@ spec:
             - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
               value: "{{ .Values.gateway.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
-              value: "{{ .Values.gateway.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"
+              value: "{{ .Values.gateway.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"           
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_ID
+              value: "customer"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_URI
+              value: "http://customer"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_0
+              value: "Path=/api/v1/customers/**"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_1_ID
+              value: "order"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_1_URI
+              value: "http://order"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_1_PREDICATES_0
+              value: "Path=/api/v1/orders/**"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_2_ID
+              value: "order-lines-service"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_2_URI
+              value: "http://order"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_2_PREDICATES_0
+              value: "Path=/api/v1/order-lines/**"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_3_ID
+              value: "product"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_3_URI
+              value: "http://product"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_3_PREDICATES_0
+              value: "Path=/api/v1/products/**"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_4_ID
+              value: "payment"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_4_URI
+              value: "http://payment"
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_4_PREDICATES_0
+              value: "Path=/api/v1/payments/**"
+        
       imagePullSecrets:
             - name: harbor-secret          
 ---
