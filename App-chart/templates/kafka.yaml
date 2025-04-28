@@ -13,7 +13,7 @@ spec:
         app: kafka
     spec:
       containers:
-        - name: kafka
+        - name: kafka-container
           image: confluentinc/cp-kafka:latest
           ports:
             - containerPort: 29092
