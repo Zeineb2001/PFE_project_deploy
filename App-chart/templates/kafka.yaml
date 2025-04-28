@@ -42,9 +42,11 @@ metadata:
   name: kafka
 spec:
   ports:
-    - port: 9092
+    - name: kafka-port
+      port: 9092
       targetPort: 9092
-    - port: 29092
+    - name: kafka-external-port
+      port: 29092
       targetPort: 29092
   selector:
     app: kafka
