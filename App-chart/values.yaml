@@ -53,7 +53,7 @@ customer:
 kafka:
   replicaCount: 1
   image:
-    repository: confluentinc/cp-kafka:latest
+    repository: docker.io/zeinebmessaoudi/kafka
     tag: latest
     pullPolicy: IfNotPresent
   service:
