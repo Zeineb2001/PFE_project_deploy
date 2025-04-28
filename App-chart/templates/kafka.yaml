@@ -29,6 +29,8 @@ spec:
               value: "PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092"
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
               value: "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
+            - name: KAFKA_LISTENER_PORT
+              value: "9092"  # Set KAFKA_LISTENER_PORT explicitly
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
               value: "PLAINTEXT"
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
@@ -37,6 +39,7 @@ spec:
               value: "true"
           dependsOn:
             - name: zookeeper
+
 ---
 apiVersion: v1
 kind: Service
