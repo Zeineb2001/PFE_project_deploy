@@ -109,7 +109,7 @@ product:
   image:
     repository: docker.io/zeinebmessaoudi/product
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   service:
     port: 8050
     targetPort: 8050
@@ -194,7 +194,7 @@ order:
   image:
     repository: docker.io/zeinebmessaoudi/order
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   service:
     port: 8070
     targetPort: 8070
@@ -238,7 +238,7 @@ zipkin:
   image:
     repository: docker.io/zeinebmessaoudi/zipkin
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   service:
     port: 9411
     targetPort: 9411
