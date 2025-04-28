@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: zookeeper
+  name: zookeeper-service
 spec:
   ports:
     - name: zookeeper-port
