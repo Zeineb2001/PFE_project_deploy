@@ -51,6 +51,10 @@ spec:
               value: "{{ .Values.notification.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: "{{ .Values.notification.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}" 
+            - name: SPRING_KAFKA_CONSUMER_GROUP_ID
+              value: "{{ .Values.notification.env.SPRING_KAFKA_CONSUMER_GROUP_ID }}"             
+            - name: SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET
+              value: "{{ .Values.notification.env.SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET }}"                  
       imagePullSecrets:
             - name: harbor-secret                
 ---
