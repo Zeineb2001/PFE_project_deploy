@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: kafka-container
-          image: {{ .Values.kafka.image }}
-          imagePullPolicy: {{ .Values.kafka.image.pullPolicy }}
+          image: confluentinc/cp-kafka
+          imagePullPolicy: IfNotPresent
           env:
             - name: KAFKA_BROKER_ID
               value: "{{ .Values.kafka.env.KAFKA_BROKER_ID }}"
