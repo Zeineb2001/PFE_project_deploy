@@ -45,8 +45,8 @@ spec:
               value: "{{ .Values.notification.env.SPRING_MAIL_USERNAME }}"
             - name: SPRING_MAIL_PASSWORD
               value: "{{ .Values.notification.env.SPRING_MAIL_PASSWORD }}"
-            - name: KAFKA_BOOTSTRAP_SERVERS
-              value: "{{ .Values.notification.env.KAFKA_BOOTSTRAP_SERVERS }}"
+            - name: SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS
+              value: "{{ .Values.notification.env.SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS }}"
             - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
               value: "{{ .Values.notification.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
