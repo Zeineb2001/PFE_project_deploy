@@ -187,7 +187,8 @@ notification:
     SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"  
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
+    SPRING_KAFKA_CONSUMER_GROUP_ID : "paymentGroup,orderGroup"
+    SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET: "earliest"
 # Order Service
 order:
   replicaCount: 1
