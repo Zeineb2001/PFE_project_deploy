@@ -50,19 +50,6 @@ customer:
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
-kafka:
-  replicaCount: 1
-  service:
-    port: 9092
-    targetPort: 9092
-    type: ClusterIP
-  env:
-      KAFKA_BROKER_ID: "1"
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092 "
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"   
       
 # MailDev
 mailDev:
@@ -257,20 +244,7 @@ zipkin:
     targetPort: 9411
     type: NodePort
 
-# Zookeeper
-zookeeper:
-  replicaCount: 1
-  image:
-    repository: docker.io/zeinebmessaoudi/zookeeper
-    tag: latest
-    pullPolicy: Always
-  service:
-    port: 2181
-    targetPort: 2181
-    type: ClusterIP
-  env:
-    ZOOKEEPER_CLIENT_PORT: 2181
-    ZOOKEEPER_TICK_TIME: 2000
+
 
 
 
