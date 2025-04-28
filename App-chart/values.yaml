@@ -222,7 +222,7 @@ payment:
     type: ClusterIP
   env:
     SPRING_PROFILES_ACTIVE: docker
-    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/order
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/payment
     SPRING_DATASOURCE_USERNAME: alibou
     SPRING_DATASOURCE_PASSWORD: alibou
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
