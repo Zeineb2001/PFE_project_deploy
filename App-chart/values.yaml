@@ -12,7 +12,7 @@ discovery:
   env:
     SPRING_PROFILES_ACTIVE: docker
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 # Gateway Service
 gateway:
@@ -27,9 +27,9 @@ gateway:
     type: NodePort
   env:
     SPRING_PROFILES_ACTIVE: docker
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 # Customer Service
 customer:
@@ -46,9 +46,9 @@ customer:
     SPRING_PROFILES_ACTIVE: docker
     MONGO_INITDB_ROOT_USERNAME: alibou
     MONGO_INITDB_ROOT_PASSWORD: alibou
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
       
 # MailDev
@@ -116,12 +116,12 @@ product:
     type: ClusterIP
   env:
     SPRING_PROFILES_ACTIVE: docker
-    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql-service:5432/product
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/product
     SPRING_DATASOURCE_USERNAME: alibou
     SPRING_DATASOURCE_PASSWORD: alibou
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 # Mongo Express
 mongoExpress:
@@ -173,7 +173,7 @@ notification:
     type: ClusterIP
   env:
     SPRING_PROFILES_ACTIVE: docker
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     SPRING_DATA_MONGODB_USERNAME: alibou
     SPRING_DATA_MONGODB_PASSWORD: alibou
     SPRING_DATA_MONGODB_HOST: mongodb
@@ -186,7 +186,7 @@ notification:
     SPRING_MAIL_PASSWORD: aliboudocker rm 
     SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"  
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 # Order Service
 order:
@@ -201,13 +201,13 @@ order:
     type: ClusterIP
   env:
     SPRING_PROFILES_ACTIVE: docker
-    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql-service:5432/order
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/order
     SPRING_DATASOURCE_USERNAME: alibou
     SPRING_DATASOURCE_PASSWORD: alibou
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"  
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 # Payment Service
 payment:
@@ -222,13 +222,13 @@ payment:
     type: ClusterIP
   env:
     SPRING_PROFILES_ACTIVE: docker
-    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql-service:5432/order
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/order
     SPRING_DATASOURCE_USERNAME: alibou
     SPRING_DATASOURCE_PASSWORD: alibou
-    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"   
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
-    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin-service:9411/api/v2/spans
+    MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
 
 
 
