@@ -86,7 +86,7 @@ postgresql:
 product:
   replicaCount: 1
   image:
-    repository: "zeinebmessaoudi/discovery"
+    repository: "zeinebmessaoudi/customer"
     tag: "v97"
     pullPolicy: IfNotPresent
   service:
