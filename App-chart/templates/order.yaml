@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: order-container
-          image: {{ .Values.order.image.repository }}:{{ .Values.order.image.tag }}
+          image: "{{ .Values.order.image.repository }}:{{ .Values.order.image.tag }}"
           imagePullPolicy: {{ .Values.order.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.order.service.targetPort }}
