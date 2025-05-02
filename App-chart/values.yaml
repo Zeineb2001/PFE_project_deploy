@@ -86,8 +86,8 @@ postgresql:
 product:
   replicaCount: 1
   image:
-    repository: "zeinebmessaoudi/order"
-    tag: "v102"
+    repository: "zeinebmessaoudi/product"
+    tag: "v101"
     pullPolicy: IfNotPresent
   service:
     port: 8050
