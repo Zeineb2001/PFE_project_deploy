@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: product-container
-          image: {{ .Values.product.image.repository }}:{{ .Values.product.image.tag }}
+          image: "{{ .Values.product.image.repository }}:{{ .Values.product.image.tag }}"
           imagePullPolicy: {{ .Values.product.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.product.service.targetPort }}
