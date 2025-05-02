@@ -13,7 +13,6 @@ discovery:
     SPRING_PROFILES_ACTIVE: docker
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
 # Gateway Service
 gateway:
   replicaCount: 1
@@ -30,7 +29,6 @@ gateway:
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
 # Customer Service
 customer:
   replicaCount: 1
@@ -49,8 +47,6 @@ customer:
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
-      
 # MailDev
 mailDev:
   replicaCount: 1
@@ -69,9 +65,6 @@ mailDev:
         port: 1025
         targetPort: 1025
         nodePort: 31025
-
-
-
 postgresql:
   replicas: 1
   image:
@@ -90,12 +83,11 @@ postgresql:
     port: 5432
     targetPort: 5432
     type: ClusterIP
-
 product:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/product"
-    tag: "v98"
+    tag: "v105"
     pullPolicy: IfNotPresent
   service:
     port: 8050
@@ -113,14 +105,13 @@ product:
 configMap:
   name: mongo-config
   ME_CONFIG_MONGODB_SERVER: mongodb
-  name: postgres-config  
+  name: postgres-config
   PGDATA: /data/postgres
-
 secret:
   name: mongodb-secret
   MONGO_INITDB_ROOT_USERNAME: alibou
   MONGO_INITDB_ROOT_PASSWORD: alibou
-  name: postgres-secret  
+  name: postgres-secret
   POSTGRES_USER: alibou
   POSTGRES_PASSWORD: alibou
 # Mongo Express
@@ -140,7 +131,6 @@ mongoExpress:
     adminUsernameKey: MONGO_INITDB_ROOT_USERNAME
     adminPasswordKey: MONGO_INITDB_ROOT_PASSWORD
     mongoServerKey: ME_CONFIG_MONGODB_SERVER
-
 # MongoDB
 mongodb:
   replicaCount: 1
@@ -159,7 +149,6 @@ mongodb:
   persistence:
     enabled: false
     mountPath: /data
-
 # Notification Service
 notification:
   replicaCount: 1
@@ -183,11 +172,11 @@ notification:
     SPRING_MAIL_HOST: mail-dev
     SPRING_MAIL_PORT: "1025"
     SPRING_MAIL_USERNAME: alibou
-    SPRING_MAIL_PASSWORD: aliboudocker rm 
-    SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: "kafka-service:9092"  
+    SPRING_MAIL_PASSWORD: aliboudocker rm
+    SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS: "kafka-service:9092"
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-    SPRING_KAFKA_CONSUMER_GROUP_ID : "paymentGroup,orderGroup"
+    SPRING_KAFKA_CONSUMER_GROUP_ID: "paymentGroup,orderGroup"
     SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET: "earliest"
 # Order Service
 order:
@@ -206,10 +195,9 @@ order:
     SPRING_DATASOURCE_USERNAME: alibou
     SPRING_DATASOURCE_PASSWORD: alibou
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
-    SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"  
+    SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
 # Payment Service
 payment:
   replicaCount: 1
@@ -227,12 +215,9 @@ payment:
     SPRING_DATASOURCE_USERNAME: alibou
     SPRING_DATASOURCE_PASSWORD: alibou
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
-    SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"   
+    SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
-
-
-
 # Zipkin
 zipkin:
   replicaCount: 1
@@ -244,8 +229,3 @@ zipkin:
     port: 9411
     targetPort: 9411
     type: NodePort
-
-
-
-
-
