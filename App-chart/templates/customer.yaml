@@ -34,7 +34,7 @@ spec:
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"   
       imagePullSecrets:
-            - name: harbor-secret                         
+        - name: harbor-secret                         
 ---
 
 apiVersion: v1
