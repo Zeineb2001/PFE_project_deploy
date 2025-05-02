@@ -70,20 +70,7 @@ mailDev:
         targetPort: 1025
         nodePort: 31025
 
-# MongoDB Configuration and Secret
-configMap:
-  name: mongo-config
-  ME_CONFIG_MONGODB_SERVER: mongodb
-  name: postgres-config  
-  PGDATA: /data/postgres
 
-secret:
-  name: mongodb-secret
-  MONGO_INITDB_ROOT_USERNAME: alibou
-  MONGO_INITDB_ROOT_PASSWORD: alibou
-  name: postgres-secret  
-  POSTGRES_USER: alibou
-  POSTGRES_PASSWORD: alibou
 
 postgresql:
   replicas: 1
@@ -122,7 +109,20 @@ product:
     EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery:8761/eureka
     MANAGEMENT_TRACING_SAMPLING_PROBABILITY: "1.0"
     MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+# MongoDB Configuration and Secret
+configMap:
+  name: mongo-config
+  ME_CONFIG_MONGODB_SERVER: mongodb
+  name: postgres-config  
+  PGDATA: /data/postgres
 
+secret:
+  name: mongodb-secret
+  MONGO_INITDB_ROOT_USERNAME: alibou
+  MONGO_INITDB_ROOT_PASSWORD: alibou
+  name: postgres-secret  
+  POSTGRES_USER: alibou
+  POSTGRES_PASSWORD: alibou
 # Mongo Express
 mongoExpress:
   replicaCount: 1
