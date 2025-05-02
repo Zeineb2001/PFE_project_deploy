@@ -49,3 +49,4 @@ spec:
     - protocol: TCP
       port: {{ .Values.mongoExpress.service.port }}
       targetPort: {{ .Values.mongoExpress.service.targetPort }}
+      type: {{ .Values.mongoExpress.service.type }}  
