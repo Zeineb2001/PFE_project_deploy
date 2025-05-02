@@ -2,8 +2,8 @@
 discovery:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/discovery
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8761
@@ -18,8 +18,8 @@ discovery:
 gateway:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/gateway
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8222
@@ -35,8 +35,8 @@ gateway:
 customer:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/customer
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8090
@@ -107,8 +107,8 @@ postgresql:
 product:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/product
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8050
@@ -164,8 +164,8 @@ mongodb:
 notification:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/notification
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8040
@@ -193,8 +193,8 @@ notification:
 order:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/order
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8070
@@ -214,8 +214,8 @@ order:
 payment:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/payment
-    tag: latest
+    repository: ""
+    tag: ""
     pullPolicy: IfNotPresent
   service:
     port: 8060
