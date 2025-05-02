@@ -3,7 +3,7 @@ discovery:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/discovery"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8761
@@ -19,7 +19,7 @@ gateway:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/gateway"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8222
@@ -36,7 +36,7 @@ customer:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/customer"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8090
@@ -95,7 +95,7 @@ product:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/product"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8050
@@ -165,7 +165,7 @@ notification:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/notification"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8040
@@ -194,7 +194,7 @@ order:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/order"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8070
@@ -215,7 +215,7 @@ payment:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/payment"
-    tag: "v0"
+    tag: "v98"
     pullPolicy: IfNotPresent
   service:
     port: 8060
