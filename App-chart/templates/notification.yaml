@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: notification
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/path: "/actuator/prometheus"
+      prometheus.io/port: "8040"           
     spec:
       containers:
         - name: notification-container
