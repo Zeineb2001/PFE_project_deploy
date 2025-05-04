@@ -72,7 +72,7 @@ spec:
   selector:
     app: gateway
   ports:
-    - protocol: TCP
+    - name: http
       port: {{ .Values.gateway.service.port }}
       targetPort: {{ .Values.gateway.service.targetPort }}
   type: {{ .Values.gateway.service.type }}  
