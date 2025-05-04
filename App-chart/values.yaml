@@ -18,7 +18,7 @@ gateway:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/gateway"
-    tag: "v100"
+    tag: "v101"
     pullPolicy: IfNotPresent
   service:
     port: 8222
