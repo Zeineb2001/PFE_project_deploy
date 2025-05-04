@@ -51,7 +51,7 @@ spec:
   selector:
     app: order
   ports:
-    - protocol: TCP
+    - name: http
       port: {{ .Values.order.service.port}}
       targetPort: {{ .Values.order.service.targetPort}}
   type: {{ .Values.order.service.type }}
