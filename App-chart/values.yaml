@@ -203,7 +203,7 @@ payment:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/payment"
-    tag: "v104"
+    tag: "v106"
     pullPolicy: IfNotPresent
   service:
     port: 8060
