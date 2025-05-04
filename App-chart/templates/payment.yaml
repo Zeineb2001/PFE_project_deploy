@@ -50,7 +50,7 @@ spec:
   selector:
     app: payment
   ports:
-    - protocol: TCP
+    - name: http
       port: {{ .Values.payment.service.port}}
       targetPort: {{ .Values.payment.service.targetPort}}
   type: {{ .Values.payment.service.type }}
