@@ -46,7 +46,7 @@ spec:
   selector:
     app: product
   ports:
-    - protocol: TCP
+    - name: http
       port: {{ .Values.product.service.port }}
       targetPort: {{ .Values.product.service.targetPort }}
   type: {{ .Values.product.service.type }}
