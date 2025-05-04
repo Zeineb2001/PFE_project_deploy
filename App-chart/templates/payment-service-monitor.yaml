@@ -9,6 +9,9 @@ spec:
   selector:
     matchLabels:
       app: payment
+  namespaceSelector:
+    matchNames:
+      - default          
   endpoints:
     - port: http
       path: /actuator/prometheus
