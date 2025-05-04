@@ -9,6 +9,9 @@ spec:
   selector:
     matchLabels:
       app: notification
+  namespaceSelector:
+    matchNames:
+      - default          
   endpoints:
     - port: http
       path: /actuator/prometheus
