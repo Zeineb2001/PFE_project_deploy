@@ -67,7 +67,7 @@ spec:
   selector:
     app: notification
   ports:
-    - protocol: TCP
+    - name: http
       port: {{ .Values.notification.service.port}}
       targetPort: {{ .Values.notification.service.targetPort}}
   type: {{ .Values.notification.service.type}}
