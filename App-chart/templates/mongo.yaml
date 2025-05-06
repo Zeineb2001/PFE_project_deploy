@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mongo-container
-          image: {{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}
+          image: mongo:4.4
           imagePullPolicy: {{ .Values.mongodb.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.mongodb.service.targetPort }}
