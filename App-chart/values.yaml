@@ -135,8 +135,6 @@ mongoExpress:
 mongodb:
   replicaCount: 1
   image:
-    repository: docker.io/zeinebmessaoudi/mongo
-    tag: latest
     pullPolicy: IfNotPresent
   service:
     port: 27017
