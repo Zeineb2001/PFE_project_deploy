@@ -7,18 +7,20 @@ metadata:
     alertmanagerConfig: gmail-notifications
 spec:
   route:
-    receiver: gmail
+    receiver: 'gmail'
     group_wait: 30s
     group_interval: 5m
-    repeat_interval: 12h
+    repeat_interval: 1h
+
   receivers:
-  - name: gmail
+  - name: 'gmail'
     emailConfigs:
-    - to:       'zeineb.messaoudi@etudiant-enit.utm.tn'      
-      from:     'alertmanager@gmail.com'      
-      authUsername: 'zeineb.messaoudi@etudiant-enit.utm.tn'     
+    - to: 'zeineb.messaoudi@etudiant-enit.utm.tn'
+      from: 'zeineb.messaoudi@etudiant-enit.utm.tn'
+      smarthost: 'smtp.gmail.com:587'
+      authUsername: 'zeineb.messaoudi@etudiant-enit.utm.tn'
       authPassword:
         name: alertmanager-gmail-secret
         key: password
       requireTLS: true
-      smarthost:  'smtp.gmail.com:587'
+      sendResolved: true
