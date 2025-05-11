@@ -5,20 +5,19 @@ metadata:
   namespace: default
 spec:
   groups:
-  - name: all-pods.rules
-    rules:
-    - alert: HighCPUUsage
-      expr: |
-        sum by (pod) (
-          rate(container_cpu_usage_seconds_total{
-            namespace="default"
-          }[1m])
-        ) > 0.8
-      for: 2m
-      labels:
-        severity: critical
-      annotations:
-        summary: ""Utilisation CPU élevée sur le pod {{`{{`}} $labels.pod {{`}}`}}""
-        description: |
-          "Le pod {{`{{`}} $labels.pod {{`}}`}} consomme plus de 80 % de CPU depuis 2 minutes."
+    - name: all-pods.rules
+      rules:
+        - alert: HighCPUUsage
+          expr: |
+            sum by (pod) (
+              rate(container_cpu_usage_seconds_total{namespace="default"}[1m])
+            ) > 0.8
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Utilisation CPU élevée sur le pod {{`{{`}} $labels.pod {{`}}`}}"
+            description: |
+              Le pod {{`{{`}} $labels.pod {{`}}`}} consomme plus de 80 % de CPU depuis 2 minutes.
+
 
