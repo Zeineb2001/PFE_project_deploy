@@ -3,6 +3,9 @@ kind: PrometheusRule
 metadata:
   name: all-pods-cpu-alerts
   namespace: monitoring
+  labels:
+    release: kube-prometheus-stack   
+  
 spec:
   groups:
     - name: all-pods.rules
