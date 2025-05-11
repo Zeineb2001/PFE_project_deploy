@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: all-pods-cpu-alerts
-  namespace: default
+  namespace: monitoring
 spec:
   groups:
     - name: all-pods.rules
