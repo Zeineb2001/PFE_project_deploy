@@ -8,17 +8,17 @@ spec:
   - name: all-pods.rules
     rules:
     - alert: HighCPUUsage
-      # On calcule l’usage CPU par pod sur la dernière minute
       expr: |
         sum by (pod) (
           rate(container_cpu_usage_seconds_total{
             namespace="default"
           }[1m])
         ) > 0.8
-      # Si la condition tient pendant 2 minutes
       for: 2m
       labels:
         severity: critical
       annotations:
-        summary: "Utilisation CPU élevée sur le pod {{ $labels.pod }}"
-        description:  "Le pod {{ $labels.pod }} consomme plus de 80 % de CPU depuis au moins 2 minutes."
+        summary: "Utilisation CPU élevée sur le pod {{`{{`}} $labels.pod {{`}}`}}"
+        description: |
+          "Le pod {{`{{`}} $labels.pod {{`}}`}} consomme plus de 80 % de CPU depuis au moins 2 minutes."
+
