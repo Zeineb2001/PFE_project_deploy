@@ -19,8 +19,6 @@ spec:
       from: 'zeineb.messaoudi@etudiant-enit.utm.tn'
       smarthost: 'smtp.gmail.com:587'
       authUsername: 'zeineb.messaoudi@etudiant-enit.utm.tn'
-      authPassword:
-        name: alertmanager-gmail-secret
-        key: password
+      authPassword: 'itxm retw owdw dzun'
       requireTLS: true
       sendResolved: true
