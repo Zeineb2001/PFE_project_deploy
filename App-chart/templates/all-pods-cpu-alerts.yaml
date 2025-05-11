@@ -17,7 +17,6 @@ spec:
             severity: critical
           annotations:
             summary: "Utilisation CPU élevée sur le pod {{`{{`}} $labels.pod {{`}}`}}"
-            description: |
-              Le pod {{`{{`}} $labels.pod {{`}}`}} consomme plus de 80 % de CPU depuis 2 minutes.
+            description: "Le pod {{`{{`}} $labels.pod {{`}}`}} consomme plus de 80 % de CPU depuis 2 minutes."
 
 
