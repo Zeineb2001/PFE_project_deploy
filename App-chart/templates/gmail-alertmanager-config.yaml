@@ -14,7 +14,7 @@ spec:
     routes:
     - receiver: "gmail"
       matchers:
-      - 'namespace="monitoring"'
+      - 'namespace="default"'
       groupWait: 30s
       groupInterval: 5m
       repeatInterval: 1h
