@@ -18,10 +18,7 @@ spec:
         - to: "zeineb.messaoudi@etudiant-enit.utm.tn"
           from: "zeineb.messaoudi@etudiant-enit.utm.tn"
           smarthost: "smtp.gmail.com:587"
-          authUsername:
-            secretKeyRef:
-              name: smtp-credentials
-              key: username
+          authUsername: "zeineb.messaoudi@etudiant-enit.utm.tn"
           authPassword:
             secretKeyRef:
               name: smtp-credentials
