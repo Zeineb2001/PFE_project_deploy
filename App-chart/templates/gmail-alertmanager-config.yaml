@@ -4,7 +4,8 @@ metadata:
   name: gmail-notifications
   namespace: monitoring
   labels:
-    release: kube-prometheus-stack  
+    release: kube-prometheus-stack 
+    alertmanagerConfig: gmail-notifications
 spec:
   route:
     receiver: "null"
