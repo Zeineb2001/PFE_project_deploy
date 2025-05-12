@@ -28,7 +28,7 @@ spec:
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: "{{ .Values.discovery.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"      
       imagePullSecrets:
-        - name: harbor-secret                
+        - name: dockerhub-secret                
 ---
 
 apiVersion: v1
