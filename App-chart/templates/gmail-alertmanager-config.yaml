@@ -11,16 +11,19 @@ spec:
     receiver: "gmail"
     groupBy:
     - alertname
-    matchers:
-    - 'namespace="default"'
     groupWait: 30s
     groupInterval: 5m
     repeatInterval: 1h
+    matchers:
+    - name: namespace
+      value: default
+      isRegex: false
+
   receivers:
   - name: "gmail"
     emailConfigs:
-    - to:    "zeineb.messaoudi@etudiant-enit.utm.tn"
-      from:  "zeineb.messaoudi@etudiant-enit.utm.tn"
+    - to: "zeineb.messaoudi@etudiant-enit.utm.tn"
+      from: "zeineb.messaoudi@etudiant-enit.utm.tn"
       smarthost: "smtp.gmail.com:587"
       authUsername: "zeineb.messaoudi@etudiant-enit.utm.tn"
       authPassword:
@@ -28,5 +31,4 @@ spec:
         key: password
       requireTLS: true
       sendResolved: true
-
 
