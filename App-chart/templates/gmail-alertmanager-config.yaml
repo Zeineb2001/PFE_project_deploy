@@ -20,9 +20,8 @@ spec:
           smarthost: "smtp.gmail.com:587"
           authUsername: "zeineb.messaoudi@etudiant-enit.utm.tn"
           authPassword:
-            secretKeyRef:
-              name: smtp-credentials
-              key: password
+            name: smtp-credentials
+            key: password
           requireTLS: true
           sendResolved: true
 
