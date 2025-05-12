@@ -3,6 +3,8 @@ kind: AlertmanagerConfig
 metadata:
   name: gmail-notifications
   namespace: monitoring
+  labels:
+    release: kube-prometheus-stack  
 spec:
   route:
     receiver: "null"
