@@ -228,6 +228,8 @@ zipkin:
     targetPort: 9411
     type: NodePort
     
+monitoring:
+  enabled: false    
 serviceMonitors:
   - name: gateway
     namespace: monitoring
