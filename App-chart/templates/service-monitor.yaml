@@ -1,3 +1,4 @@
+{{- if .Values.monitoring.enabled }}
 {{- range .Values.serviceMonitors }}
 ---
 apiVersion: monitoring.coreos.com/v1
@@ -16,5 +17,6 @@ spec:
 {{ toYaml .namespaceSelector.matchNames | indent 6 }}
   endpoints:
 {{ toYaml .endpoints | indent 4 }}
+{{- end }}
 {{- end }}
 
