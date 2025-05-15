@@ -9,10 +9,6 @@ spec:
     repoURL: https://github.com/Zeineb2001/PFE_project_deploy.git
     targetRevision: HEAD
     path: App-chart
-    helm:
-      valueFiles:
-        - values.yaml
-        - values-local.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: default
