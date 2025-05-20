@@ -1,10 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port:   "9090"   
-    prometheus.io/path: "/metrics" 
+  annotations: 
   name: customer
   labels:
     app: customer
@@ -17,6 +14,10 @@ spec:
     metadata:
       labels:
         app: customer
+      annotations:
+        prometheus.io/scrape: "true"      # active le scrape
+        prometheus.io/port:   "8090"      # port où tourne votre /metrics
+        prometheus.io/path:   "/metrics"  # chemin de l’endpoint métriques      
     spec:
       containers:
         - name: customer-container
