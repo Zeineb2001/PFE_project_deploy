@@ -39,7 +39,12 @@ spec:
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"   
       imagePullSecrets:
-        - name: harbor-secret                         
+        - name: harbor-secret
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
 ---
 
 apiVersion: v1
