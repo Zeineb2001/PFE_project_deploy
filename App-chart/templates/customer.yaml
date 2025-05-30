@@ -14,10 +14,6 @@ spec:
     metadata:
       labels:
         app: customer
-      annotations:
-        prometheus.io/scrape: "true"      # active le scrape
-        prometheus.io/port:   "8090"      # port où tourne votre /metrics
-        prometheus.io/path:   "/metrics"  # chemin de l’endpoint métriques      
     spec:
       containers:
         - name: customer-container
@@ -37,12 +33,7 @@ spec:
             - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
               value: "{{ .Values.customer.env.MANAGEMENT_TRACING_SAMPLING_PROBABILITY }}"
             - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
-              value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"   
-          resources:
-            requests:
-              cpu: "800m"
-            limits:
-              cpu: "900m"              
+              value: "{{ .Values.customer.env.MANAGEMENT_ZIPKIN_TRACING_ENDPOINT }}"          
       imagePullSecrets:
         - name: harbor-secret
 
