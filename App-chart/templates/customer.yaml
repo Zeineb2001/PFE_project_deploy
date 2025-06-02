@@ -17,7 +17,7 @@ spec:
       annotations:
         prometheus.io/scrape: "true"      # active le scrape
         prometheus.io/port:   "8090"      # port où tourne votre /metrics
-        prometheus.io/path:   "/metrics"  # chemin de l’endpoint métriques      
+        prometheus.io/path:   "/actuator/prometheus"  # chemin de l’endpoint métriques      
     spec:
       containers:
         - name: customer-container
