@@ -152,7 +152,7 @@ notification:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/notification"
-    tag: "v105"
+    tag: "v106"
     pullPolicy: IfNotPresent
   service:
     port: 8040
