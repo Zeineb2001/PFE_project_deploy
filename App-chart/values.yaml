@@ -3,7 +3,7 @@ discovery:
   replicaCount: 1
   image:
     repository: "zeinebmessaoudi/discovery"
-    tag: "v99"
+    tag: "v100"
     pullPolicy: IfNotPresent
   service:
     port: 8761
